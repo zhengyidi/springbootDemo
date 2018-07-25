@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transcend.demo.dao.datasource2.EmpMapper" >
+  <resultMap id="BaseResultMap" type="com.transcend.demo.entity.datasource2.Emp" >
+    <id column="EMPNO" property="empno" jdbcType="DECIMAL" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="MGR" property="mgr" jdbcType="DECIMAL" />
+    <result column="HIREDATE" property="hiredate" jdbcType="TIMESTAMP" />
+    <result column="SAL" property="sal" jdbcType="DECIMAL" />
+    <result column="COMM" property="comm" jdbcType="DECIMAL" />
+    <result column="DEPTNO" property="deptno" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from EMP
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.transcend.demo.entity.datasource2.Emp" >
+    insert into EMP (EMPNO, ENAME, JOB, 
+      MGR, HIREDATE, SAL, 
+      COMM, DEPTNO)
+    values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=TIMESTAMP}, #{sal,jdbcType=DECIMAL}, 
+      #{comm,jdbcType=DECIMAL}, #{deptno,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.transcend.demo.entity.datasource2.Emp" >
+    update EMP
+    set ENAME = #{ename,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      MGR = #{mgr,jdbcType=DECIMAL},
+      HIREDATE = #{hiredate,jdbcType=TIMESTAMP},
+      SAL = #{sal,jdbcType=DECIMAL},
+      COMM = #{comm,jdbcType=DECIMAL},
+      DEPTNO = #{deptno,jdbcType=DECIMAL}
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+    from EMP
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+    from EMP
+  </select>
+</mapper>
